@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Personality Generator</title>
+  <style>
+    /* General Body Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(45deg, #ff9e80, #ffcc80);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    /* Container Styling */
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .container:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #f39c12;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Button Styling */
+    #generate-btn {
+      background-color: #f39c12;
+      color: #fff;
+      font-size: 1.3em;
+      padding: 20px 40px;
+      border: none;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-top: 30px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #generate-btn:hover {
+      background-color: #e67e22;
+      transform: translateY(-3px);
+    }
+
+    /* Personality Display */
+    #personality {
+      margin-top: 30px;
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #2c3e50;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    /* Personality Image Styling */
+    #personality-image {
+      margin-top: 20px;
+      animation: slideIn 1s ease-out;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Random Personality Generator</h1>
+    <button id="generate-btn">Generate Your Personality</button>
+    <div id="personality"></div>
+    <div id="personality-image">
+      <!-- Image will be inserted here -->
+    </div>
+  </div>
+
+  <script>
+    // List of personality descriptions and corresponding images
+    const personalities = [
+      {
+        text: "Paisa bahut hai, lekin dikhane ka nahi hai.",
+        image: "./images/jethalal.png" // Replace with actual image URL
+      },
+      {
+        text: "Tara nasib maj aa che.",
+        image: "./images/vijuba.png" // Replace with actual image URL
+      },
+      {
+        text: "I have so good driving skills (bhale tanga no pochta hoy).",
+        image: "./images/PatelBhai.png" // Replace with actual image URL
+      },
+    ];
+
+    const generateBtn = document.getElementById('generate-btn');
+    const personalityDisplay = document.getElementById('personality');
+    const imageDisplay = document.getElementById('personality-image');
+
+    generateBtn.addEventListener('click', () => {
+      // Get a random index from the personalities array
+      const randomIndex = Math.floor(Math.random() * personalities.length);
+
+      // Get the random personality
+      const randomPersonality = personalities[randomIndex];
+
+      // Display the personality description
+      personalityDisplay.innerText = randomPersonality.text;
+
+      // Display the image
+      const imgElement = document.createElement('img');
+      imgElement.src = randomPersonality.image;
+      imgElement.alt = "Personality Image";
+
+      // Clear previous image and add the new one
+      imageDisplay.innerHTML = '';  // Clear any previous images
+      imageDisplay.appendChild(imgElement);
+    });
+  </script>
+</body>
+</html>
